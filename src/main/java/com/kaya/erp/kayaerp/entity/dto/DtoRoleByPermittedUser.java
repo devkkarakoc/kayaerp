@@ -4,13 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-public class DtoPageByPermittedRole {
+public class DtoRoleByPermittedUser {
 	
-	private int sayfaId;
-	private String sayfaAdi;
+	private int role_id;
+	private String role_name;
 	private Boolean isActive;
-
+	
+	
 }

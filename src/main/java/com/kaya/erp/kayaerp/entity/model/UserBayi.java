@@ -13,22 +13,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
-@Table(name = "User_Role_Tb") // Tablonun adı
-public class UserRole {
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "User_Bayi_Tb")
+public class UserBayi {
 	
 	  @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY) // Otomatik artan ID
 	    @Column(name = "id")
 	    private int id;
 	  
-	  	private Integer user_id;
+	  	private int user_id;
 	  	
-	  	private int role_id;
+	  	private int bayi_id;
 	  	
 	  	private Timestamp create_date;
-	
+
 }

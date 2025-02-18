@@ -2,6 +2,7 @@ package com.kaya.erp.kayaerp.controller.user;
 
 import java.util.List;
 
+import com.kaya.erp.kayaerp.entity.dto.DtoUserByPermittedBayi;
 import com.kaya.erp.kayaerp.entity.dto.DtoUserLoginRequest;
 import com.kaya.erp.kayaerp.entity.model.User;
 
@@ -20,6 +21,8 @@ public interface IUserController {
 	public User defineRoleToAddedUser(Integer user_id, List<Integer> role_id);
 	
 	public List<User> getUsersByRoles(List<Integer> roleIds);
+	
+	public List<DtoUserByPermittedBayi> getDtoUserByPermittedBayi (int bayi_id); 
 	
 	
 }

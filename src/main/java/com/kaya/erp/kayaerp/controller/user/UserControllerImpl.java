@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kaya.erp.kayaerp.entity.dto.DtoUserByPermittedBayi;
 import com.kaya.erp.kayaerp.entity.dto.DtoUserLoginRequest;
 import com.kaya.erp.kayaerp.entity.model.User;
 import com.kaya.erp.kayaerp.service.user.IUserService;
@@ -68,6 +69,13 @@ public class UserControllerImpl implements IUserController {
 	public List<User> getUsersByRoles(@RequestBody List<Integer> roleIds) {
 		// TODO Auto-generated method stub
 		return userService.getUsersByRoles(roleIds);
+	}
+
+	@GetMapping(path = "/getDtoUserByPermittedBayi/{id}")
+	@Override
+	public List<DtoUserByPermittedBayi> getDtoUserByPermittedBayi(@PathVariable(name = "id") int bayi_id) {
+		
+		return userService.getDtoUserByPermittedBayi(bayi_id);
 	}
 
 }

@@ -7,15 +7,19 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.kaya.erp.kayaerp.entity.dto.DtoUserByPermittedBayi;
 import com.kaya.erp.kayaerp.entity.model.User;
+import com.kaya.erp.kayaerp.entity.model.UserBayi;
 import com.kaya.erp.kayaerp.entity.model.UserRole;
 import com.kaya.erp.kayaerp.entity.repository.user.UserRepository;
+import com.kaya.erp.kayaerp.entity.repository.userBayi.UserBayiRepository;
 import com.kaya.erp.kayaerp.entity.repository.userRole.UserRoleRepository;
 
 @Service
@@ -26,6 +30,9 @@ public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	private UserRoleRepository userRoleRepository;
+	
+	@Autowired
+	private UserBayiRepository userBayiRepository;
 
 	@Override
 	public User getUserById(int id) {
@@ -40,8 +47,6 @@ public class UserServiceImpl implements IUserService {
 		throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
 				"Kullanıcı bulunamadı: Username = " + userOptional.get().getUsername());
 	}
-
-	
 
 	@Override
 	public Boolean checkUserById(int id) {
@@ -73,7 +78,7 @@ public class UserServiceImpl implements IUserService {
 	public User addUserAndReturnEntity(User newUser) {
 
 		if (newUser != null) {
-			
+
 			try {
 				User addedUser = userRepository.save(newUser);
 				return addedUser;
@@ -81,7 +86,6 @@ public class UserServiceImpl implements IUserService {
 				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Kullanıcı Oluşturulamadı");
 			}
 
-		
 		}
 
 		throw new IllegalArgumentException("Kullanıcı  boş olamaz!");
@@ -144,7 +148,19 @@ public class UserServiceImpl implements IUserService {
 		return users;
 	}
 
-
+	@Override
+	public List<DtoUserByPermittedBayi> getDtoUserByPermittedBayi(int bayi_id) {
+		
+		List<User> getAllUsers = userRepository.findAll();
+		
+		List<Integer> bayiyeTanimliUserlarinId =   userBayiRepository.getUserBayiByBayiId(bayi_id).stream().map(UserBayi::getUser_id).collect(Collectors.toList());
+		
+		List<DtoUserByPermittedBayi> dtoUserByPermittedBayis = getAllUsers.stream().map( xxx -> new DtoUserByPermittedBayi(xxx.getId(),xxx.getUsername(),bayiyeTanimliUserlarinId.contains(xxx.getId()))).collect(Collectors.toList());
+		
+		
+		
+		return dtoUserByPermittedBayis;
+	}
 
 	
 

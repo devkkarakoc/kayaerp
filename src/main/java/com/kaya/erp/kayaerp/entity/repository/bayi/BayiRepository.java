@@ -15,5 +15,7 @@ public interface BayiRepository extends JpaRepository<Bayi, Integer>{
 	 public Bayi getBayiByBayiKodu(@Param("bayi_kodu") String bayi_kodu);
 	
 	 
+	 
+	 
 	
 }

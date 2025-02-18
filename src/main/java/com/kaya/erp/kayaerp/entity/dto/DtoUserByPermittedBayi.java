@@ -7,10 +7,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class DtoPageByPermittedRole {
+public class DtoUserByPermittedBayi {
 	
-	private int sayfaId;
-	private String sayfaAdi;
+	private int user_id;
+	private String username;
 	private Boolean isActive;
+	
+	
+	
 
 }
