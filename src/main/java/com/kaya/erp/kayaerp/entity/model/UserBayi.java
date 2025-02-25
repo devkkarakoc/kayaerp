@@ -30,4 +30,13 @@ public class UserBayi {
 	  	
 	  	private Timestamp create_date;
 
+		public UserBayi(int user_id, int bayi_id, Timestamp create_date) {
+			super();
+			this.user_id = user_id;
+			this.bayi_id = bayi_id;
+			this.create_date = create_date;
+		}
+	  	
+	  	
+
 }

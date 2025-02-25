@@ -162,6 +162,37 @@ public class UserServiceImpl implements IUserService {
 		return dtoUserByPermittedBayis;
 	}
 
+	@Override
+	public List<DtoUserByPermittedBayi> saveAndDeleteUsersByPermittedBayi(List<DtoUserByPermittedBayi> dtoUser,
+			int bayi_id) {
+		
+		List<Integer> bayiyeTanimliUserlarinId = userBayiRepository.getUserBayiByBayiId(bayi_id).
+				stream().map(UserBayi::getUser_id).collect(Collectors.toList());
+		
+		List<UserBayi> eklenecekUserler =
+				dtoUser.stream().filter(userDto -> userDto.getIsActive() && !bayiyeTanimliUserlarinId.contains(userDto.getUser_id())).map(
+						newUser-> new UserBayi(newUser.getUser_id(),bayi_id, new Timestamp(System.currentTimeMillis()))
+						
+						).collect(Collectors.toList());
+		
+		List<Integer> silinecekUserlerList  = dtoUser.stream().
+				filter(deletedUser -> !deletedUser.getIsActive() && bayiyeTanimliUserlarinId.contains(deletedUser.getUser_id()))
+				.map(DtoUserByPermittedBayi:: getUser_id).collect(Collectors.toList());
+		
+		
+		if(!eklenecekUserler.isEmpty()) {
+			userBayiRepository.saveAll(eklenecekUserler);
+			
+		}
+		if(!silinecekUserlerList.isEmpty()) {
+			userBayiRepository.deleteUsersByBayiId(bayi_id,silinecekUserlerList);
+		}
+		
+		
+		
+		return getDtoUserByPermittedBayi(bayi_id);
+	}
+
 	
 
 }

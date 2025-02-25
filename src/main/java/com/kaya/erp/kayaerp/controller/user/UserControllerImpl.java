@@ -78,4 +78,12 @@ public class UserControllerImpl implements IUserController {
 		return userService.getDtoUserByPermittedBayi(bayi_id);
 	}
 
+	@PostMapping(path = "/saveAndDeleteUsersByPermittedBayi/{bayi_id}")
+	@Override
+	public List<DtoUserByPermittedBayi> saveAndDeleteUsersByPermittedBayi( @RequestBody List<DtoUserByPermittedBayi> userDto,
+			@PathVariable(name="bayi_id") int bayi_id) {
+		// TODO Auto-generated method stub
+		return userService.saveAndDeleteUsersByPermittedBayi(userDto, bayi_id);
+	}
+
 }

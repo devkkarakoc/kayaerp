@@ -25,4 +25,6 @@ public interface IUserController {
 	public List<DtoUserByPermittedBayi> getDtoUserByPermittedBayi (int bayi_id); 
 	
 	
+	public List<DtoUserByPermittedBayi> saveAndDeleteUsersByPermittedBayi(List<DtoUserByPermittedBayi> userDto,int bayi_id); 
+	
 }

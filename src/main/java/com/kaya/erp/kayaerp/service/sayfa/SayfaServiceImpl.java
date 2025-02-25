@@ -42,7 +42,7 @@ public class SayfaServiceImpl implements ISayfaService {
 	UserSayfaRepository userSayfaRepository;
 
 	@Override
-	public List<Sayfa> getUsersPermittedPages(int user_id) {
+	public List<Sayfa> getPagesPermittedUser(int user_id) {
 
 		Optional<User> user = userRepository.findById(user_id);
 
@@ -61,7 +61,10 @@ public class SayfaServiceImpl implements ISayfaService {
 					if (!userRoleSayfalarList.isEmpty()) {
 
 						for (Sayfa userSayfa : userRoleSayfalarList) {
-							kullanininSayfalariList.add(userSayfa);
+							if(!kullanininSayfalariList.contains(userSayfa)) {
+								kullanininSayfalariList.add(userSayfa);
+							}
+							
 
 						}
 
@@ -155,35 +158,34 @@ public class SayfaServiceImpl implements ISayfaService {
 	@Override
 	public List<DtoPageByPermittedRole> saveAndDeletePagesByDtoPermittedRole(List<DtoPageByPermittedRole> dtoPages, int role_id) {
 
-	    // Role'a ait mevcut sayfa ID'lerini al
+	    
 	    List<Integer> roleAitSayfaIds = roleSayfaRepository.getPagesByPermittedRole(role_id)
 	            .stream()
 	            .map(RoleSayfa::getSayfa_id)
 	            .collect(Collectors.toList());
 
-	    // Eklenmesi gereken sayfaları bul (Şu an role ait değil ama `isActive=true` olanlar)
 	    List<RoleSayfa> eklenecekSayfalar = dtoPages.stream()
 	            .filter(dto -> dto.getIsActive() && !roleAitSayfaIds.contains(dto.getSayfaId()))
 	            .map(dto -> new RoleSayfa(role_id, dto.getSayfaId(), new Timestamp(System.currentTimeMillis())))
 	            .collect(Collectors.toList());
 
-	    // Silinmesi gereken sayfaları bul (Şu an role ait ama `isActive=false` olanlar)
+	   
 	    List<Integer> silinecekSayfaIds = dtoPages.stream()
 	            .filter(dto -> !dto.getIsActive() && roleAitSayfaIds.contains(dto.getSayfaId()))
 	            .map(DtoPageByPermittedRole::getSayfaId)
 	            .collect(Collectors.toList());
 
-	    // Yeni sayfaları kaydet
+	   
 	    if (!eklenecekSayfalar.isEmpty()) {
 	        roleSayfaRepository.saveAll(eklenecekSayfalar);
 	    }
 
-	    // Silinmesi gereken sayfaları kaldır
+	 
 	    if (!silinecekSayfaIds.isEmpty()) {
 	        roleSayfaRepository.deleteByRoleIdAndSayfaIds(role_id, silinecekSayfaIds);
 	    }
 
-	    // Güncellenmiş veriyi tekrar döndür
+	 
 	    return getDtoPagesByPermittedRole(role_id);
 	}
 

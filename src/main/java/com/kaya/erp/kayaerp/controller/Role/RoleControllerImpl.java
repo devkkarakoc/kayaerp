@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,12 +44,19 @@ public class RoleControllerImpl implements IRoleController{
 		return roleService.getDtoRolesByPermittedUsers(user_id);
 	}
 
-
 	@PostMapping("/addRoleAndReturnEntity")
 	@Override
-	public Role addRoleAndReturnEntity(@RequestParam Role role) {
+	public Role addRoleAndReturnEntity(@RequestBody Role role) {
 		// TODO Auto-generated method stub
 		return roleService.addRoleAndReturnEntity(role);
+	}
+
+	@PostMapping("/saveAndDeleteRolesByPermittedUsers")
+	@Override
+	public List<DtoRoleByPermittedUser> saveAndDeleteRolesByPermittedUsers(@RequestBody List<DtoRoleByPermittedUser> dtoUser,
+			int user_id) {
+		// TODO Auto-generated method stub
+		return roleService.saveAndDeleteRolesByPermittedUsers( dtoUser, user_id);
 	}
 
 }

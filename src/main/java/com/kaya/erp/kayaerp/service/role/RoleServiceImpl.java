@@ -1,5 +1,6 @@
 package com.kaya.erp.kayaerp.service.role;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -70,14 +71,33 @@ public class RoleServiceImpl implements IRoleService {
 				.collect(Collectors.toList());
 
 		return dtoRoles;
-
 	}
 
 	@Override
 	public List<DtoRoleByPermittedUser> saveAndDeleteRolesByPermittedUsers(List<DtoRoleByPermittedUser> dtoUser,
 			int user_id) {
 
-		return null;
+		List<Integer> kullaniciyaAitRollerId = userRoleRepository.getRoleUserId(user_id).stream()
+				.map(UserRole::getRole_id).collect(Collectors.toList());
+
+		List<UserRole> eklenecekRollerList = dtoUser.stream()
+				.filter(user -> user.getIsActive() && !kullaniciyaAitRollerId.contains(user.getRole_id()))
+				.map(dto -> new UserRole(user_id, dto.getRole_id(), new Timestamp(System.currentTimeMillis())))
+				.collect(Collectors.toList());
+
+		List<Integer> silinecekRollerId = dtoUser.stream()
+				.filter(user -> !user.getIsActive() && kullaniciyaAitRollerId.contains(user.getRole_id()))
+				.map(DtoRoleByPermittedUser::getRole_id).collect(Collectors.toList());
+
+		if (!eklenecekRollerList.isEmpty()) {
+			userRoleRepository.saveAll(eklenecekRollerList);
+		}
+
+		if (!silinecekRollerId.isEmpty()) {
+			userRoleRepository.deleteByRoleIdAndUserId(user_id, silinecekRollerId);
+		}
+
+		return getDtoRolesByPermittedUsers(user_id);
 	}
 
 }

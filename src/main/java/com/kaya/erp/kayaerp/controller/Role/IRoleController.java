@@ -14,4 +14,6 @@ public interface IRoleController {
 	public List<DtoRoleByPermittedUser> getDtoRolesByPermittedUsers(int user_id);
 	
 	public Role addRoleAndReturnEntity(Role role);
+	
+	public  List<DtoRoleByPermittedUser> saveAndDeleteRolesByPermittedUsers(List<DtoRoleByPermittedUser> dtoUser, int user_id);
 }

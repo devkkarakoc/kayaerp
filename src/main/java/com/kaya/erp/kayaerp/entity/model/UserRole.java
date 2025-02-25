@@ -25,10 +25,19 @@ public class UserRole {
 	    @Column(name = "id")
 	    private int id;
 	  
-	  	private Integer user_id;
+	  	private int user_id;
 	  	
 	  	private int role_id;
 	  	
 	  	private Timestamp create_date;
+
+		public UserRole(Integer user_id, int role_id, Timestamp create_date) {
+			super();
+			this.user_id = user_id;
+			this.role_id = role_id;
+			this.create_date = create_date;
+		}
+	  	
+	  	
 	
 }

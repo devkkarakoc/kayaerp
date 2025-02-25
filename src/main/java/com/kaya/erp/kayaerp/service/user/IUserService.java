@@ -10,8 +10,6 @@ public interface IUserService {
 	
 	public User getUserById(int id);
 	
-
-	
 	public Boolean checkUserById(int id);
 
 	public User loginUser(String unameString ,String pass);
@@ -25,6 +23,8 @@ public interface IUserService {
 	public List<User> getUsersByRoles(List<Integer> roleIds);
 	
 	public List<DtoUserByPermittedBayi> getDtoUserByPermittedBayi (int bayi_id); 
+	
+	public List<DtoUserByPermittedBayi> saveAndDeleteUsersByPermittedBayi(List<DtoUserByPermittedBayi> dtoUser,int bayi_id);
 	
 	
 	

@@ -7,7 +7,7 @@ import com.kaya.erp.kayaerp.entity.model.Sayfa;
 
 public interface ISayfaController {
 	
-	public List<Sayfa> getUsersPermittedPages(int user_id);
+	public List<Sayfa> getPagesPermittedUser(int user_id);
 	 
 	 public  List<Sayfa>  getAllPages();
 	 

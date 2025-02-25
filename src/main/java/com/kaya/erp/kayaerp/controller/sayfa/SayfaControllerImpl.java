@@ -24,9 +24,9 @@ public class SayfaControllerImpl implements ISayfaController{
 	
 	@GetMapping(path = "/getPagesPermittedUser")
 	@Override
-	public List<Sayfa> getUsersPermittedPages(int user_id) {
+	public List<Sayfa> getPagesPermittedUser(int user_id) {
 		// TODO Auto-generated method stub
-		return sayfaService.getUsersPermittedPages(user_id);
+		return sayfaService.getPagesPermittedUser(user_id);
 	}
 
 	@GetMapping(path = "/getAllPages")
