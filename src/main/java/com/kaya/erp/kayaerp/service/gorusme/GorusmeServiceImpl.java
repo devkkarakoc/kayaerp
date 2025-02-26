@@ -44,11 +44,14 @@ public class GorusmeServiceImpl implements IGorusmeService {
 	}
 
 	@Override
-	public Gorusme getGorusmeByGorusmeUsername(String gusername) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Gorusme> getGorusmeByGorusmeUsername(String gusername) {
+		
+		return gorusmeRepository.getGorusmeByGorusmeUsername(gusername);
 	}
 
+
+	
+		
 	
 
 

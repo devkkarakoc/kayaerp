@@ -9,7 +9,7 @@ public interface IGorusmeController  {
 	
 	public List<Gorusme> getAllGorusme();
 	public Gorusme getGorusmeByIdGorusme(Integer id);
-	//public Gorusme getGorusmeByGorusmeUsername(String gusername);
+	public  List<Gorusme> getGorusmeByGorusmeUsername(String gusername);
 
 	
 	

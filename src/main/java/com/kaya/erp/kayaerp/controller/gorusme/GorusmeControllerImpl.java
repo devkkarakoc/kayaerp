@@ -36,17 +36,17 @@ public class GorusmeControllerImpl implements IGorusmeController {
 		return gorusmeService.getGorusmeByIdGorusme(id);
 	}
 
-//	@GetMapping("/getGorusmeByGorusmeUsername")
-//	@Override
-//	public Gorusme getGorusmeByGorusmeUsername(@RequestParam String gusername) {
-//		// TODO Auto-generated method stub
-//		return gorusmeService.getGorusmeByGorusmeUsername(gusername);
-//	}
+    @GetMapping("/byUsername/{gusername}")
+    public List<Gorusme> getGorusmeByGorusmeUsername(@PathVariable String gusername) {
+        return gorusmeService.getGorusmeByGorusmeUsername(gusername);  
+    }
 
 
-	
-	
 	
 	
 	
 }
+
+
+
+   
