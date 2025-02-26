@@ -1,0 +1,66 @@
+package com.kaya.erp.kayaerp.entity.model;
+
+import java.sql.Timestamp;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "Gorusme_Tb")
+public class Gorusme {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // ID otomatik artan ise
+
+	private Integer gid;
+
+	private String gtipi;
+
+	private String ganagrup;
+
+	private String galtgrup;
+
+	private String gmarka;
+
+	private String gmodel;
+
+	private String gmusteri;
+
+	private String gtel;
+
+	private String gaciklama;
+
+	private String gdealer;
+
+	private String gusername;
+
+	private Timestamp gtarih;
+
+	private int gstatu;
+
+	private String gstatubilgi;
+
+	private String gfiyat;
+
+	private String gbizinerdenduydunuz;
+
+	private int smsid;
+
+	private String bizinedentercihetmedi;
+
+	private String email;
+
+	private String stokadi;
+
+	private String talepEdilenMarka;
+
+}
