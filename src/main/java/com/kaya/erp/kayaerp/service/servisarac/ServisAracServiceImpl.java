@@ -1,5 +1,7 @@
 package com.kaya.erp.kayaerp.service.servisarac;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 //import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -9,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 
 import com.kaya.erp.kayaerp.entity.model.ServisArac;
 import com.kaya.erp.kayaerp.entity.repository.servisArac.ServisAracRepository;
@@ -95,9 +96,28 @@ public class ServisAracServiceImpl implements IServisAracService {
 	//}
 	
 	@Override
-	public List<ServisArac> getServisAracByServisAracEklenmeTarihi(Date bastar, Date bittar) {
-	    return ServisAracRepository.getServisAracByServisAracEklenmeTarihi(bastar, bittar);
+	public List<ServisArac> getServisAracByServisAracEklenmeTarihi(String bastar, String bittar) {
+		
+		 
+        // Tarih formatını düzgün bir şekilde dönüştürmeliyiz
+        Date bastarDate = parseDate(bastar);
+        Date bittarDate = parseDate(bittar);
+
+		
+		
+	    return ServisAracRepository.getServisAracByServisAracEklenmeTarihi(bastarDate, bittarDate);
 	}
+	
+	
+	// String'i Date'e dönüştüren yardımcı metot
+    private Date parseDate(String dateStr) {
+        try {
+            return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").parse(dateStr);
+        } catch (ParseException e) {
+            // Hata durumunda null döndürüyoruz, ama burada bir hata mesajı verebilirsiniz
+            return null;
+        }
+    }
 
 	
 	@Override
@@ -108,7 +128,19 @@ public class ServisAracServiceImpl implements IServisAracService {
         if (servisArac.getMODEL() == null || servisArac.getMODEL().isEmpty()) {
             throw new IllegalArgumentException("Model Adı Giriniz!");
         }
-        return ServisAracRepository.save(servisArac); // Veriyi kaydediyoruz
+        
+        ServisArac eklenenServisArac = new ServisArac();
+        
+        try {
+			
+        	 eklenenServisArac = ServisAracRepository.save(servisArac);
+        	
+		} catch (Exception e) {
+			String exeptionString = e.getMessage();
+		}
+        
+        
+        return eklenenServisArac; // Veriyi kaydediyoruz
     }
 	
 }
