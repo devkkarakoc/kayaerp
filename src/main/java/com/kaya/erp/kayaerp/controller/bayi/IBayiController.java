@@ -10,7 +10,8 @@ public interface IBayiController  {
 	public List<Bayi> getAllBayi();
 	public Bayi getBayiByIdBayi(Integer id);
 	public Bayi getBayiByBayiKodu(String bayi_kod);
-	public Bayi saveBayi(Bayi newBayi);
-	
+	public Bayi addBayi(Bayi Bayi);
+	public List <Bayi> addBayiList (List <Bayi> bayiList);
+	public void deleteBayi(Integer id);
 	
 }

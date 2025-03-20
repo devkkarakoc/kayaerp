@@ -19,4 +19,6 @@ public interface IServisAracController {
       public ServisArac getServisAracByServisAracSasi(String SASI);
       public List<ServisArac> getServisAracByServisAracEklenmeTarihi(String bastar , String bittar);
       public ServisArac addServisArac(ServisArac servisArac);
+      public List <ServisArac> addServisAracList(List <ServisArac> servisAracList);
+      public void deleteServisArac(Long ARACID);
 }

@@ -3,6 +3,7 @@ package com.kaya.erp.kayaerp.controller.bayi;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,13 +45,21 @@ public class BayiControllerImpl implements IBayiController {
 	}
 
 	
-	@PostMapping("/saveBayi")
+	@PostMapping("/addandupdateBayi")
 	@Override
-	public Bayi saveBayi(@RequestBody Bayi newBayi) {
+	public Bayi addBayi(@RequestBody Bayi Bayi) {
 		
-		return bayiService.saveBayi(newBayi);
+		return bayiService.addBayi(Bayi);
+	}
+	
+	@PostMapping("/addAllBayi")
+	public List<Bayi> addBayiList (@RequestBody List<Bayi> bayiList){
+		return bayiService.addBayiList(bayiList);
 	}
 
-	
+	@DeleteMapping("/delete/{id}")
+	public void deleteBayi(@PathVariable(name= "id") Integer id) {
+		bayiService.deleteBayi(id);
+	}
 	
 }

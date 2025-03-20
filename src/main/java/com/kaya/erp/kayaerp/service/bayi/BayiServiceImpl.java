@@ -2,6 +2,8 @@ package com.kaya.erp.kayaerp.service.bayi;
 
 import java.util.List;
 import java.util.Optional;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -54,13 +56,37 @@ public class BayiServiceImpl implements IBayiService {
 	}
 
 	@Override
-	public Bayi saveBayi(Bayi newBayi) {
+	public Bayi addBayi(Bayi Bayi) {
 
-		if (newBayi == null) {
+		if (Bayi == null) {
 			throw new IllegalArgumentException("Bayi  Giriniz!");
 		}
-
-		return bayiRepository.save(newBayi);
+		
+		Bayi eklenenBayi = new Bayi();
+		
+		try {
+			eklenenBayi = bayiRepository.save(Bayi);
+		} catch (Exception e) {
+			String exeptionString = e.getMessage();
+		}
+		return eklenenBayi;
 	}
-
+   
+	public List <Bayi> addBayiList (List <Bayi> bayiList) {
+		return bayiRepository.saveAll(bayiList);
+	}
+	
+	public void deleteBayi( Integer id) {
+		Optional<Bayi> Bayi = bayiRepository.findById(id);
+		
+		if (Bayi.isPresent())  {
+			
+			try {
+				bayiRepository .deleteById(id);
+				
+			} catch (Exception e) {
+				throw new IllegalArgumentException(" Bayi bulunamadı!");
+			}
+		}
+	}
 }

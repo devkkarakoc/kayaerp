@@ -16,6 +16,7 @@ public interface IServisAracService {
     public List<ServisArac> getServisAracByServisAracPlaka(String PLAKA);
     public ServisArac getServisAracByServisAracSasi(String SASI);
     public List <ServisArac> getServisAracByServisAracEklenmeTarihi(String bastar ,String bittar);
-    ServisArac addServisArac(ServisArac servisArac);
-    
+    public ServisArac addServisArac(ServisArac servisArac);
+    public List <ServisArac> addServisAracList (List <ServisArac> servisAracList);
+    public void deleteServisArac(Long ARACID);
 }
