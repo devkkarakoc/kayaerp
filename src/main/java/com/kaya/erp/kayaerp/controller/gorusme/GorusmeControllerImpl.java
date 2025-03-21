@@ -3,6 +3,7 @@ package com.kaya.erp.kayaerp.controller.gorusme;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kaya.erp.kayaerp.entity.model.Gorusme;
+import com.kaya.erp.kayaerp.entity.model.ServisArac;
 import com.kaya.erp.kayaerp.service.gorusme.IGorusmeService;
 
 
@@ -29,11 +31,11 @@ public class GorusmeControllerImpl implements IGorusmeController {
 	}
 
 	
-	@GetMapping("/getGorusmeById/{id}")
+	@GetMapping("/getGorusmeById/{gid}")
 	@Override
-	public Gorusme getGorusmeByIdGorusme(@PathVariable(name = "id") Integer id) {
+	public Gorusme getGorusmeByIdGorusme(@PathVariable(name = "gid") Integer gid) {
 		
-		return gorusmeService.getGorusmeByIdGorusme(id);
+		return gorusmeService.getGorusmeByIdGorusme(gid);
 	}
 
     @GetMapping("/byUsername/{gusername}")
@@ -41,7 +43,21 @@ public class GorusmeControllerImpl implements IGorusmeController {
         return gorusmeService.getGorusmeByGorusmeUsername(gusername);  
     }
 
+    @PostMapping("/addAndUpdateGorusme")
+ 	public Gorusme addGorusme(@RequestBody Gorusme gorusme) {
+		return gorusmeService.addGorusme(gorusme);
+	}
+	
+	@PostMapping("/addAllGorusme")
+    public List<Gorusme> addGorusmeList(@RequestBody List<Gorusme> gorusmeList) {
+        return gorusmeService.addGorusmeList(gorusmeList);
+    }
 
+	
+    @DeleteMapping("/delete/{gid}")
+    public void deleteGorusme(@PathVariable(name = "gid") Integer gid) {
+    	gorusmeService.deleteGorusme(gid);
+    }
 	
 	
 	

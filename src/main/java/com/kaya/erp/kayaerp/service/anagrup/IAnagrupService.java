@@ -10,8 +10,9 @@ public interface IAnagrupService {
 	public Anagrup getAnagrupByIdAnagrup(Integer id);
 	public Anagrup getAnagrupByAnagrupKod(String anagrup_kod);
 	public List<Anagrup> getAnagrupByAnagrupDealer(String anagrup_dealer);
-	
-	
+	public Anagrup addAnagrup (Anagrup anagrup);
+	public List <Anagrup> addAnagrupList (List <Anagrup> anagrupList);
+	public void deleteAnagrup (Integer id);
 	
 }
 

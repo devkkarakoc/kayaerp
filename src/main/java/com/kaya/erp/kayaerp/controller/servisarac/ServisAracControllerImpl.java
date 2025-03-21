@@ -72,7 +72,7 @@ public class ServisAracControllerImpl implements IServisAracController {
 		return servisaracService.getServisAracByServisAracEklenmeTarihi(bastar, bittar);
 	}
 
-	@PostMapping("/addandupdateServisArac")
+	@PostMapping("/addAndUpdateServisArac")
  	public ServisArac addServisArac(@RequestBody ServisArac servisArac) {
 		return servisaracService.addServisArac(servisArac);
 	}

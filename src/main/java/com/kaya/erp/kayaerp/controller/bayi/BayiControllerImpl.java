@@ -37,7 +37,7 @@ public class BayiControllerImpl implements IBayiController {
 		return bayiService.getBayiByIdBayi(id);
 	}
 
-	@GetMapping("/getBayiBayiKod")
+	@GetMapping("/getBayiByBayiKod")
 	@Override
 	public Bayi getBayiByBayiKodu(@RequestParam String bayi_kod) {
 		// TODO Auto-generated method stub
@@ -45,7 +45,7 @@ public class BayiControllerImpl implements IBayiController {
 	}
 
 	
-	@PostMapping("/addandupdateBayi")
+	@PostMapping("/addAndUpdateBayi")
 	@Override
 	public Bayi addBayi(@RequestBody Bayi Bayi) {
 		

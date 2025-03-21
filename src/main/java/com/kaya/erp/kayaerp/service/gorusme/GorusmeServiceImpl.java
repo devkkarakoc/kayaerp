@@ -24,17 +24,17 @@ public class GorusmeServiceImpl implements IGorusmeService {
 	}
 
 	@Override
-	public Gorusme getGorusmeByIdGorusme(Integer id) {
+	public Gorusme getGorusmeByIdGorusme(Integer gid) {
 
-		if (id != null) {
+		if (gid != null) {
 
-			Optional<Gorusme> gorusmeOptional = gorusmeRepository.findById(id);
+			Optional<Gorusme> gorusmeOptional = gorusmeRepository.findById(gid);
 
 			if (gorusmeOptional.isPresent()) {
 
 				return gorusmeOptional.get();
 			}
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Gorusme Bulunamadı: ID = " + id);
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Gorusme Bulunamadı: ID = " + gid);
 		} else {
 
 			throw new IllegalArgumentException("Gorusme Id Giriniz!");
@@ -49,8 +49,42 @@ public class GorusmeServiceImpl implements IGorusmeService {
 		return gorusmeRepository.getGorusmeByGorusmeUsername(gusername);
 	}
 
-
+     @Override
+     public Gorusme addGorusme (Gorusme gorusme) {
+    	 if (gorusme == null) {
+ 			throw new IllegalArgumentException("Gorusme  Giriniz!");
+ 		}
+    	 Gorusme eklenenGorusme = new Gorusme ();
+    	 try {
+    		 eklenenGorusme = gorusmeRepository.save(gorusme);
+    	 } catch  (Exception e) {
+ 			String exeptionString = e.getMessage();
+    	 }
+    	 return eklenenGorusme;
+     }
+     
+     public List<Gorusme>  addGorusmeList(List <Gorusme>  gorusmeList) {
+    	 return gorusmeRepository.saveAll(gorusmeList);
+     }
 	
+     public void deleteGorusme (Integer gid) {
+    	 
+    	 Optional<Gorusme> gorusme  = gorusmeRepository.findById(gid);
+    	 
+    	 if (gorusme.isPresent()) {
+    		 
+    		 try {
+    			 gorusmeRepository.deleteById(gid);
+    		 }  catch (Exception e) {
+
+ 				throw new IllegalArgumentException(e.getMessage());
+    	     }
+          }else {
+        	  throw new  IllegalArgumentException("Gorusme bulunamadı!");
+        	  
+    		 
+    	 }
+     }
 		
 	
 

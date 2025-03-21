@@ -4,11 +4,18 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.kaya.erp.kayaerp.entity.model.Altgrup;
+import com.kaya.erp.kayaerp.entity.model.ServisArac;
 import com.kaya.erp.kayaerp.entity.repository.altgrup.AltgrupRepository;
 
 
@@ -83,10 +90,52 @@ public class AltgrupServiceImpl implements IAltgrupService {
 		return altgrupRepository.getAltgrupByAltgrupAnagrupId(altgrup_kodu, anagrup_id);
 	}
 
-	
+	@Override
+	public Altgrup addAltgrup(Altgrup altgrup) {
+		if (altgrup.getAltgrupDealer() == null || altgrup.getAltgrupDealer().isEmpty()) {
+			throw new IllegalArgumentException("Altgrup Dealer Giriniz!");
+		}
 
-	
+		Altgrup eklenenAltgrup = new Altgrup();
 
+		try {
+
+			eklenenAltgrup = altgrupRepository.save(altgrup);
+
+		} catch (Exception e) {
+			String exeptionString = e.getMessage();
+		}
+
+		return eklenenAltgrup; 
+	}
+
+	public List<Altgrup> addAltgrupList(List<Altgrup> altgrupList) {
+		
+		return altgrupRepository.saveAll(altgrupList);
+	}
+
+	public void deleteAltgrup(Integer id) {
+  
+		Optional<Altgrup> altgrup = altgrupRepository.findById(id);
+
+		
+		if (altgrup.isPresent()) {
+
+			try {
+				altgrupRepository.deleteById(id);
+				
+			} catch (Exception e) {
+
+				throw new IllegalArgumentException(e.getMessage());
+
+			}
+
+		} else {
+			throw new IllegalArgumentException("ServisArac bulunamadı!");
+		}
+	}
 	
 	
 }
+	
+	

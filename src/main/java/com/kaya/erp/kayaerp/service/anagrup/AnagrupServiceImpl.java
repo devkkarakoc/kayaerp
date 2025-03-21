@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.kaya.erp.kayaerp.entity.model.Anagrup;
+import com.kaya.erp.kayaerp.entity.model.ServisArac;
 import com.kaya.erp.kayaerp.entity.repository.anagrup.AnagrupRepository;
 
 
@@ -67,6 +68,50 @@ public class AnagrupServiceImpl implements IAnagrupService {
 
 		return anagrupRepository.getAnagrupByAnagrupKod(anagrup_kod);
 	}
+	@Override
+	public Anagrup addAnagrup(Anagrup anagrup) {
+		if (anagrup.getAnagrupDealer() == null || anagrup.getAnagrupDealer().isEmpty()) {
+			throw new IllegalArgumentException("Anagrup Dealer  Giriniz!");
+		}
+	
+		Anagrup eklenenAnagrup = new Anagrup();
+
+		try {
+
+			eklenenAnagrup = anagrupRepository.save(anagrup);
+
+		} catch (Exception e) {
+			String exeptionString = e.getMessage();
+		}
+
+		return eklenenAnagrup; 
+	}
+	
+	public List<Anagrup> addAnagrupList(List<Anagrup> anagrupList) {
+		
+		return anagrupRepository.saveAll(anagrupList);
+	}
+	
+	public void deleteAnagrup(Integer id) {
+		  
+		Optional<Anagrup> anagrup = anagrupRepository.findById(id);
+
+		
+		if (anagrup.isPresent()) {
+
+			try {
+				anagrupRepository.deleteById(id);
+				
+			} catch (Exception e) {
+
+				throw new IllegalArgumentException(e.getMessage());
+
+			}
+
+		} else {
+			throw new IllegalArgumentException("Anagrup bulunamadı!");
+		}
+  }
 
 }
 	

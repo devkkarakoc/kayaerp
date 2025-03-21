@@ -13,7 +13,9 @@ public interface IAltgrupController {
 	public List<Altgrup> getAltgrupByAltgrupAdi(String altgrup_adi);
 	public List<Altgrup> getAltgrupByAltgrupAnagrupId(String altgrupKodu ,Integer anagrupId);
     public List<Altgrup> getAltgrupByAllAltgrupAnagrupId(Integer anagrup_id);
-	
+	public Altgrup addAltgrup (Altgrup altgrup);
+	public List <Altgrup> addAltgrupList (List <Altgrup> altgrup);
+	public void deleteAltgrup (Integer id);
     
 
 }

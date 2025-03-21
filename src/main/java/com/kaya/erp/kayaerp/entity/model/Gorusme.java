@@ -1,6 +1,7 @@
 package com.kaya.erp.kayaerp.entity.model;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,17 +43,17 @@ public class Gorusme {
 
 	private String gusername;
 
-	private Timestamp gtarih;
+	private Date gtarih;
 
 	private Integer gstatu;
 
 	private String gstatubilgi;
 
-	private String gfiyat;
+	private Double gfiyat;
 
 	private String gbizinerdenduydunuz;
 
-	private Integer smsid;
+	private String smsid;
 
 	private String bizinedentercihetmedi;
 

@@ -3,13 +3,17 @@ package com.kaya.erp.kayaerp.controller.altgrup;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kaya.erp.kayaerp.entity.model.Altgrup;
+import com.kaya.erp.kayaerp.entity.model.ServisArac;
 import com.kaya.erp.kayaerp.service.altgrup.IAltgrupService;
 
 @RestController
@@ -73,7 +77,22 @@ public class AltgrupControllerImpl implements IAltgrupController {
 	}
 
 
+	@PostMapping("/addAndUpdateAltgrup")
+ 	public Altgrup addAltgrup(@RequestBody Altgrup altgrup) {
+		return altgrupService.addAltgrup(altgrup);
+	}
 	
+	@PostMapping("/addAllAltgrup")
+    public List<Altgrup> addAltgrupList(@RequestBody List<Altgrup> altgrupList) {
+        return altgrupService.addAltgrupList(altgrupList);
+    }
+
+	
+    @DeleteMapping("/delete/{id}")
+    public void deleteAltgrup(@PathVariable(name = "id") Integer id) {
+    	altgrupService.deleteAltgrup(id);
+    }
+
 	
 	
 

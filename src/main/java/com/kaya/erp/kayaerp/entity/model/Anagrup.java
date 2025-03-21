@@ -33,7 +33,7 @@ public class Anagrup {
 	private String anagrupAdi;
 	
 	@Column (name= "anagrup_sira", length =100)
-	private String anagrupSira;
+	private Integer anagrupSira;
 	
 	
 	
