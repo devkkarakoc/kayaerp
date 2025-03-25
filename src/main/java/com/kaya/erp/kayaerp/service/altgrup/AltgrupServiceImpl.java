@@ -16,7 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.kaya.erp.kayaerp.entity.model.Altgrup;
 import com.kaya.erp.kayaerp.entity.model.ServisArac;
-import com.kaya.erp.kayaerp.entity.repository.altgrup.AltgrupRepository;
+import com.kaya.erp.kayaerp.repository.altgrup.AltgrupRepository;
 
 
 @Service

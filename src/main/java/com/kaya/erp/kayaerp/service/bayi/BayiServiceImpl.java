@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.kaya.erp.kayaerp.entity.model.Bayi;
-import com.kaya.erp.kayaerp.entity.repository.bayi.BayiRepository;
+import com.kaya.erp.kayaerp.repository.bayi.BayiRepository;
 
 @Service
 public class BayiServiceImpl implements IBayiService {

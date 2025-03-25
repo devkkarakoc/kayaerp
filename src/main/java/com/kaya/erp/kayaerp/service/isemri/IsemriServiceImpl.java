@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kaya.erp.kayaerp.entity.model.Isemri;
-import com.kaya.erp.kayaerp.entity.repository.isemri.IsemriRepository;
+import com.kaya.erp.kayaerp.repository.isemri.IIsemriJpa;
 
 @Service
 public class IsemriServiceImpl implements IIsemriService {
 
 	@Autowired
-	IsemriRepository isemriRepository;
+	IIsemriJpa isemriRepository;
 
 	@Override
 	public List<Isemri> getAllIsEmri() {

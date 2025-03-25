@@ -10,7 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.kaya.erp.kayaerp.entity.model.Bayi;
 import com.kaya.erp.kayaerp.entity.model.StokKarti;
-import com.kaya.erp.kayaerp.entity.repository.stokKarti.StokKartiRepository;
+import com.kaya.erp.kayaerp.repository.stokKarti.StokKartiRepository;
 
 @Service
 public class StokKartiServiceImpl implements IStokKartiService {

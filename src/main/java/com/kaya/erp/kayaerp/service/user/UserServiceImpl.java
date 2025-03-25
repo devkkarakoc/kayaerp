@@ -18,9 +18,9 @@ import com.kaya.erp.kayaerp.entity.dto.DtoUserByPermittedBayi;
 import com.kaya.erp.kayaerp.entity.model.User;
 import com.kaya.erp.kayaerp.entity.model.UserBayi;
 import com.kaya.erp.kayaerp.entity.model.UserRole;
-import com.kaya.erp.kayaerp.entity.repository.user.UserRepository;
-import com.kaya.erp.kayaerp.entity.repository.userBayi.UserBayiRepository;
-import com.kaya.erp.kayaerp.entity.repository.userRole.UserRoleRepository;
+import com.kaya.erp.kayaerp.repository.user.UserRepository;
+import com.kaya.erp.kayaerp.repository.userBayi.UserBayiRepository;
+import com.kaya.erp.kayaerp.repository.userRole.UserRoleRepository;
 
 @Service
 public class UserServiceImpl implements IUserService {

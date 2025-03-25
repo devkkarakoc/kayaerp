@@ -17,11 +17,11 @@ import com.kaya.erp.kayaerp.entity.model.Sayfa;
 import com.kaya.erp.kayaerp.entity.model.User;
 import com.kaya.erp.kayaerp.entity.model.UserRole;
 import com.kaya.erp.kayaerp.entity.model.UserSayfa;
-import com.kaya.erp.kayaerp.entity.repository.roleSayfa.RoleSayfaRepository;
-import com.kaya.erp.kayaerp.entity.repository.sayfa.SayfaRepository;
-import com.kaya.erp.kayaerp.entity.repository.user.UserRepository;
-import com.kaya.erp.kayaerp.entity.repository.userRole.UserRoleRepository;
-import com.kaya.erp.kayaerp.entity.repository.userSayfa.UserSayfaRepository;
+import com.kaya.erp.kayaerp.repository.roleSayfa.RoleSayfaRepository;
+import com.kaya.erp.kayaerp.repository.sayfa.SayfaRepository;
+import com.kaya.erp.kayaerp.repository.user.UserRepository;
+import com.kaya.erp.kayaerp.repository.userRole.UserRoleRepository;
+import com.kaya.erp.kayaerp.repository.userSayfa.UserSayfaRepository;
 
 @Service
 public class SayfaServiceImpl implements ISayfaService {

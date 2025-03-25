@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.kaya.erp.kayaerp.entity.model.ServisArac;
-import com.kaya.erp.kayaerp.entity.repository.servisArac.ServisAracRepository;
+import com.kaya.erp.kayaerp.repository.servisArac.ServisAracRepository;
 
 @Service
 public class ServisAracServiceImpl implements IServisAracService {

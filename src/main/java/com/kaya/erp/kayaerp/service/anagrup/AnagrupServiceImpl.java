@@ -10,7 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.kaya.erp.kayaerp.entity.model.Anagrup;
 import com.kaya.erp.kayaerp.entity.model.ServisArac;
-import com.kaya.erp.kayaerp.entity.repository.anagrup.AnagrupRepository;
+import com.kaya.erp.kayaerp.repository.anagrup.AnagrupRepository;
 
 
 @Service

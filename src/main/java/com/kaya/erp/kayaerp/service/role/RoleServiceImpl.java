@@ -13,8 +13,8 @@ import org.springframework.web.server.ResponseStatusException;
 import com.kaya.erp.kayaerp.entity.dto.DtoRoleByPermittedUser;
 import com.kaya.erp.kayaerp.entity.model.Role;
 import com.kaya.erp.kayaerp.entity.model.UserRole;
-import com.kaya.erp.kayaerp.entity.repository.role.RoleRepository;
-import com.kaya.erp.kayaerp.entity.repository.userRole.UserRoleRepository;
+import com.kaya.erp.kayaerp.repository.role.RoleRepository;
+import com.kaya.erp.kayaerp.repository.userRole.UserRoleRepository;
 
 @Service
 public class RoleServiceImpl implements IRoleService {
