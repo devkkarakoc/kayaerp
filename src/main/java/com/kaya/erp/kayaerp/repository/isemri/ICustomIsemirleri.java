@@ -6,5 +6,6 @@ import com.kaya.erp.kayaerp.entity.model.Isemri;
 
 public interface ICustomIsemirleri {
 	 public List<Isemri> getIsemriByOlusturan(String olusturan);
+	 public List<Isemri> getIsemriByTarih(String bastar, String bittar);
 	 
 }

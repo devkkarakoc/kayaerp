@@ -5,7 +5,7 @@ import com.kaya.erp.kayaerp.entity.model.Isemri;
 
 
 
-public interface IIsemriJpa extends JpaRepository<Isemri, Long>, ICustomIsemirleri {
+public interface IsemriJpa extends JpaRepository<Isemri, Long>, ICustomIsemirleri {
 
 	
 }

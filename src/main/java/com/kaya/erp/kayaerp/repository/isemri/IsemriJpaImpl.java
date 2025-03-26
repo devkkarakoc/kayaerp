@@ -11,7 +11,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 
 @Repository
-public class IsemriRepository implements ICustomIsemirleri{
+public class IsemriJpaImpl implements ICustomIsemirleri{
 
 	
 
@@ -25,6 +25,15 @@ public class IsemriRepository implements ICustomIsemirleri{
         query.setParameter("olusturan", olusturan);
         return query.getResultList();
     }
+
+	@Override
+	public List<Isemri> getIsemriByTarih(String bastar,String bittar) {
+		  String sql = "SELECT * FROM KAYAERP.dbo.Isemri_Tb WHERE bastar >= :olusturan and bittar <=:bittar";
+	        Query query = entityManager.createNativeQuery(sql, Isemri.class);
+	        query.setParameter("bastar", bastar);
+	        query.setParameter("bittar", bittar);
+	        return query.getResultList();
+	}
     
     
 	

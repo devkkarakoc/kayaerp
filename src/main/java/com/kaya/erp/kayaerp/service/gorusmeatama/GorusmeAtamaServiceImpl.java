@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.kaya.erp.kayaerp.entity.model.GorusmeAtama;
-import com.kaya.erp.kayaerp.repository.gorusmeAtama.IGorusmeAtamaJpa;
+import com.kaya.erp.kayaerp.repository.gorusmeAtama.GorusmeAtamaJpa;
 
 @Service
 public class GorusmeAtamaServiceImpl implements IGorusmeAtamaService {
 	
 	@Autowired
-	private IGorusmeAtamaJpa gorusmeatamaRepository;
+	private GorusmeAtamaJpa gorusmeatamaRepository;
 	
 	
 	@Override
@@ -29,7 +29,7 @@ public class GorusmeAtamaServiceImpl implements IGorusmeAtamaService {
 
 	@Override
 	public GorusmeAtama getGorusmeAtamaByGid(Integer gid) {
-		
+	
 		return gorusmeatamaRepository.getGorusmeAtamaByGid(gid);
 	}
 	
