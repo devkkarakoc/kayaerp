@@ -37,39 +37,39 @@ public class ServisAracControllerImpl implements IServisAracController {
 
 	@GetMapping("/getServisAracByServisAracMarka")
 	@Override
-	public List<ServisArac> getServisAracByServisAracMarka(String MARKA) {
+	public List<ServisArac> getServisAracByMARKA(String MARKA) {
 
-		return servisaracService.getServisAracByServisAracMarka(MARKA);
+		return servisaracService.getServisAracByMARKA(MARKA);
 	}
 
 	@GetMapping("/getServisAracByServisAracModel")
 	@Override
-	public List<ServisArac> getServisAracByServisAracModel(String MODEL) {
+	public List<ServisArac> getServisAracByMODEL(String MODEL) {
 
-		return servisaracService.getServisAracByServisAracModel(MODEL);
+		return servisaracService.getServisAracByMODEL(MODEL);
 	}
 
 	@GetMapping("/getServisAracByServisAracPlaka")
 	@Override
-	public List<ServisArac> getServisAracByServisAracPlaka(String PLAKA) {
+	public List<ServisArac> getServisAracByPLAKA(String PLAKA) {
 
-		return servisaracService.getServisAracByServisAracPlaka(PLAKA);
+		return servisaracService.getServisAracByPLAKA(PLAKA);
 	}
 
 	@GetMapping("/getServisAracByServisAracSasi")
 	@Override
-	public ServisArac getServisAracByServisAracSasi(String SASI) {
+	public ServisArac getServisAracBySASI(String SASI) {
 
-		return servisaracService.getServisAracByServisAracSasi(SASI);
+		return servisaracService.getServisAracBySASI(SASI);
 	}
 
 
 	@GetMapping("/getServisAracByServisAracEklenmeTarihi")
 	@Override
-	public List<ServisArac> getServisAracByServisAracEklenmeTarihi(@RequestParam("bastar") String bastar,
+	public List<ServisArac> getServisAracByEKLENMETARIHI(@RequestParam("bastar") String bastar,
 			@RequestParam("bittar") String bittar) {
 
-		return servisaracService.getServisAracByServisAracEklenmeTarihi(bastar, bittar);
+		return servisaracService.getServisAracByEKLENMETARIHI(bastar, bittar);
 	}
 
 	@PostMapping("/addAndUpdateServisArac")

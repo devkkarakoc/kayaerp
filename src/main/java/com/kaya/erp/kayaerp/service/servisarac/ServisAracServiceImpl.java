@@ -13,25 +13,26 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.kaya.erp.kayaerp.entity.model.ServisArac;
-import com.kaya.erp.kayaerp.repository.servisArac.ServisAracRepository;
+import com.kaya.erp.kayaerp.repository.servisArac.ServisAracJpa;
+
 
 @Service
 public class ServisAracServiceImpl implements IServisAracService {
 
 	@Autowired
-	private ServisAracRepository ServisAracRepository;
+	private ServisAracJpa servisAracRepository;
 
 	@Override
 	public List<ServisArac> getAllServisArac() {
 
-		return ServisAracRepository.findAll();
+		return servisAracRepository.findAll();
 	}
 
 	@Override
 	public ServisArac getServisAracByIdServisArac(Long ARACID) {
 		if (ARACID != null) {
 
-			Optional<ServisArac> servisaracOptional = ServisAracRepository.findById(ARACID);
+			Optional<ServisArac> servisaracOptional = servisAracRepository.findById(ARACID);
 
 			if (servisaracOptional.isPresent()) {
 
@@ -46,43 +47,43 @@ public class ServisAracServiceImpl implements IServisAracService {
 	}
 
 	@Override
-	public List<ServisArac> getServisAracByServisAracMarka(String MARKA) {
+	public List<ServisArac> getServisAracByMARKA(String MARKA) {
 		if (MARKA.isEmpty()) {
 			throw new IllegalArgumentException("Marka Adi Giriniz!");
 
 		}
 
-		return ServisAracRepository.getServisAracByServisAracMarka(MARKA);
+		return servisAracRepository.getServisAracByMARKA(MARKA);
 	}
 
 	@Override
-	public List<ServisArac> getServisAracByServisAracModel(String MODEL) {
+	public List<ServisArac> getServisAracByMODEL(String MODEL) {
 		if (MODEL.isEmpty()) {
 			throw new IllegalArgumentException("Model Adi Giriniz!");
 
 		}
 
-		return ServisAracRepository.getServisAracByServisAracModel(MODEL);
+		return servisAracRepository.getServisAracByMODEL(MODEL);
 	}
 
 	@Override
-	public List<ServisArac> getServisAracByServisAracPlaka(String PLAKA) {
+	public List<ServisArac> getServisAracByPLAKA(String PLAKA) {
 		if (PLAKA.isEmpty()) {
 			throw new IllegalArgumentException("Plaka Adi Giriniz!");
 
 		}
 
-		return ServisAracRepository.getServisAracByServisAracPlaka(PLAKA);
+		return servisAracRepository.getServisAracByPLAKA(PLAKA);
 	}
 
 	@Override
-	public ServisArac getServisAracByServisAracSasi(String SASI) {
+	public ServisArac getServisAracBySASI(String SASI) {
 		if (SASI.isEmpty()) {
 			throw new IllegalArgumentException("Sasi Adi Giriniz!");
 
 		}
 
-		return ServisAracRepository.getServisAracByServisAracSasi(SASI);
+		return servisAracRepository.getServisAracBySASI(SASI);
 	}
 
 	// @Override
@@ -98,13 +99,13 @@ public class ServisAracServiceImpl implements IServisAracService {
 	// }
 
 	@Override
-	public List<ServisArac> getServisAracByServisAracEklenmeTarihi(String bastar, String bittar) {
+	public List<ServisArac> getServisAracByEKLENMETARIHI(String bastar, String bittar) {
 
 		// Tarih formatını düzgün bir şekilde dönüştürmeliyiz
 		Date bastarDate = parseDate(bastar);
 		Date bittarDate = parseDate(bittar);
 
-		return ServisAracRepository.getServisAracByServisAracEklenmeTarihi(bastarDate, bittarDate);
+		return servisAracRepository.getServisAracByEKLENMETARIHI(bastarDate, bittarDate);
 	}
 
 	// String'i Date'e dönüştüren yardımcı metot
@@ -130,7 +131,7 @@ public class ServisAracServiceImpl implements IServisAracService {
 
 		try {
 
-			eklenenServisArac = ServisAracRepository.save(servisArac);
+			eklenenServisArac = servisAracRepository.save(servisArac);
 
 		} catch (Exception e) {
 			String exeptionString = e.getMessage();
@@ -141,18 +142,18 @@ public class ServisAracServiceImpl implements IServisAracService {
 
 	public List<ServisArac> addServisAracList(List<ServisArac> servisAracList) {
 		// Gerekli validasyonları burada yapabilirsiniz.
-		return ServisAracRepository.saveAll(servisAracList);
+		return servisAracRepository.saveAll(servisAracList);
 	}
 
 	public void deleteServisArac(Long ARACID) {
   
-		Optional<ServisArac> servisArac = ServisAracRepository.findById(ARACID);
+		Optional<ServisArac> servisArac = servisAracRepository.findById(ARACID);
 
 		
 		if (servisArac.isPresent()) {
 
 			try {
-				ServisAracRepository.deleteById(ARACID);
+				servisAracRepository.deleteById(ARACID);
 				
 			} catch (Exception e) {
 

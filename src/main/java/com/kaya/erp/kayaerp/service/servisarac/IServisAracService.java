@@ -11,11 +11,11 @@ public interface IServisAracService {
 	
 	public List <ServisArac> getAllServisArac();
     public ServisArac getServisAracByIdServisArac(Long ARACID);
-    public List<ServisArac> getServisAracByServisAracMarka(String MARKA);
-    public List<ServisArac> getServisAracByServisAracModel(String MODEL);
-    public List<ServisArac> getServisAracByServisAracPlaka(String PLAKA);
-    public ServisArac getServisAracByServisAracSasi(String SASI);
-    public List <ServisArac> getServisAracByServisAracEklenmeTarihi(String bastar ,String bittar);
+    public List<ServisArac> getServisAracByMARKA(String MARKA);
+    public List<ServisArac> getServisAracByMODEL(String MODEL);
+    public List<ServisArac> getServisAracByPLAKA(String PLAKA);
+    public ServisArac getServisAracBySASI(String SASI);
+    public List <ServisArac> getServisAracByEKLENMETARIHI(String bastar ,String bittar);
     public ServisArac addServisArac(ServisArac servisArac);
     public List <ServisArac> addServisAracList (List <ServisArac> servisAracList);
     public void deleteServisArac(Long ARACID);
