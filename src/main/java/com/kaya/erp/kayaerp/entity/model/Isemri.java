@@ -1,7 +1,7 @@
 package com.kaya.erp.kayaerp.entity.model;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -47,7 +47,7 @@ public class Isemri {
     private Long aracId;
 
     @Column(name = "TARIH")
-    private Timestamp tarih;
+    private Date tarih;
 
     @Column(name = "OLUSTURAN", length = 255)
     private String olusturan;

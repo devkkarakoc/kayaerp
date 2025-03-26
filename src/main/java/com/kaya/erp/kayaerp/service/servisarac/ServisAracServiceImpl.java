@@ -1,7 +1,5 @@
 package com.kaya.erp.kayaerp.service.servisarac;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 //import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -14,6 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.kaya.erp.kayaerp.entity.model.ServisArac;
 import com.kaya.erp.kayaerp.repository.servisArac.ServisAracJpa;
+import com.kaya.erp.kayaerp.util.AppUtil;
 
 
 @Service
@@ -86,37 +85,19 @@ public class ServisAracServiceImpl implements IServisAracService {
 		return servisAracRepository.getServisAracBySASI(SASI);
 	}
 
-	// @Override
-	// public List<ServisArac> getServisAracByServisAracEklenmeTarihi(Date
-	// bastar,Date bittar) {
-
-//		Timestamp bastarTimespamp = new java.sql.Timestamp(bastar.getTime());
-//		Timestamp bittarTimespamp = new java.sql.Timestamp(bittar.getTime());
-//		
-
-	// return ServisAracRepository.getServisAracByServisAracEklenmeTarihi(bastar,
-	// bittar);
-	// }
+	
 
 	@Override
 	public List<ServisArac> getServisAracByEKLENMETARIHI(String bastar, String bittar) {
 
 		// Tarih formatını düzgün bir şekilde dönüştürmeliyiz
-		Date bastarDate = parseDate(bastar);
-		Date bittarDate = parseDate(bittar);
+		Date bastarDate = AppUtil.parseDateFromStringToDate(bastar);
+		Date bittarDate =  AppUtil.parseDateFromStringToDate(bittar);
 
 		return servisAracRepository.getServisAracByEKLENMETARIHI(bastarDate, bittarDate);
 	}
 
-	// String'i Date'e dönüştüren yardımcı metot
-	private Date parseDate(String dateStr) {
-		try {
-			return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").parse(dateStr);
-		} catch (ParseException e) {
-			// Hata durumunda null döndürüyoruz, ama burada bir hata mesajı verebilirsiniz
-			return null;
-		}
-	}
+	
 
 	@Override
 	public ServisArac addServisArac(ServisArac servisArac) {
@@ -140,11 +121,13 @@ public class ServisAracServiceImpl implements IServisAracService {
 		return eklenenServisArac; // Veriyi kaydediyoruz
 	}
 
+	@Override
 	public List<ServisArac> addServisAracList(List<ServisArac> servisAracList) {
 		// Gerekli validasyonları burada yapabilirsiniz.
 		return servisAracRepository.saveAll(servisAracList);
 	}
 
+	@Override
 	public void deleteServisArac(Long ARACID) {
   
 		Optional<ServisArac> servisArac = servisAracRepository.findById(ARACID);

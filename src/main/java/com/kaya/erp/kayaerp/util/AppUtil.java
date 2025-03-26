@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 
 public final class AppUtil {
 
@@ -37,12 +38,22 @@ public final class AppUtil {
             return sdf.parse(dateStr);
         } catch (ParseException e) {
             throw new IllegalArgumentException("Geçersiz tarih formatı: " + dateStr);
-        }
+        } 
     }
 
-    public static boolean isNullOrEmpty(String str) {
+    public static boolean isStringNullOrEmpty(String str) {
         return str == null || str.trim().isEmpty();
     }
+    
+    public static <E> boolean isListNullOrEmpty(List<E> kerem) {
+        return kerem == null || kerem.isEmpty();
+    }
+    
+    
+    public static  boolean isIntegerNull(Integer ints) {
+        return ints == null ;
+    }
+    
     
     
 
