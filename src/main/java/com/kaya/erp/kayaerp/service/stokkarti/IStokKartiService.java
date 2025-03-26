@@ -15,7 +15,7 @@ public interface IStokKartiService {
 	
 	public List <StokKarti> getAllStokKarti();
     public StokKarti getStokKartiByIdStokKarti(Integer sid);
-    public List<StokKarti> getStokKartiByStokKartiAdi(String sadi);
+    public List<StokKarti> getStokKartiBysadi(String sadi);
 }
 
 

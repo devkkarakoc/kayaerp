@@ -55,7 +55,11 @@ public final class AppUtil {
     }
     
     
+        public static <E> boolean isObjectNull(E object) {
+            return object == null;
+        }
+    }
+
     
 
     
-}

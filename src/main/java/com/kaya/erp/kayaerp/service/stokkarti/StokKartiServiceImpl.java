@@ -10,13 +10,14 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.kaya.erp.kayaerp.entity.model.Bayi;
 import com.kaya.erp.kayaerp.entity.model.StokKarti;
-import com.kaya.erp.kayaerp.repository.stokKarti.StokKartiRepository;
+import com.kaya.erp.kayaerp.repository.stokKarti.StokKartiJpa;
+import com.kaya.erp.kayaerp.util.AppUtil;
 
 @Service
 public class StokKartiServiceImpl implements IStokKartiService {
 
 	@Autowired
-private StokKartiRepository StokKartiRepository;
+private StokKartiJpa StokKartiRepository;
 
 	@Override
 	public List<StokKarti> getAllStokKarti() {
@@ -43,13 +44,13 @@ private StokKartiRepository StokKartiRepository;
 	   }
 	
 	@Override
-	public List <StokKarti> getStokKartiByStokKartiAdi(String sadi) {
+	public List <StokKarti> getStokKartiBysadi(String sadi) {
 		if (sadi.isEmpty()) {
 		throw new IllegalArgumentException("Stok Adi Giriniz!");
 			
 				}
 	
-	return StokKartiRepository.getStokKartiByStokKartiAdi(sadi);
+	return StokKartiRepository.getStokKartiBysadi(sadi);
 	}
 
 }

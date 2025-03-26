@@ -37,9 +37,9 @@ public class StokkartiControllerImpl implements IStokkartiController {
 	
 	@GetMapping("/getStokKartiByStokKartiAdi")
 	
-	public List<StokKarti> getStokKartiByStokKartiAdi(@RequestParam String sadi) {
+	public List<StokKarti> getStokKartiBysadi(@RequestParam String sadi) {
 		
-		return stokkartiService.getStokKartiByStokKartiAdi(sadi);
+		return stokkartiService.getStokKartiBysadi(sadi);
 	}
 }
 
