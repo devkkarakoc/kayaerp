@@ -19,7 +19,7 @@ public class UserJpaImpl implements ICustomUser{
 	
 	@Override
 	public User findByUsernameAndPassword (String username,String password) {
-		String sql = "SELECT * FROM User WHERE username = :username AND password = :password";
+		String sql = "SELECT * FROM User_Tb WHERE username = :username AND usarpass  = :password";
 		try {
 			User user = (User) entityManager
 					.createNativeQuery(sql, User.class)

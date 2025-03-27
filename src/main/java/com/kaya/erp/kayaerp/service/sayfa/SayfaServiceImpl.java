@@ -19,7 +19,7 @@ import com.kaya.erp.kayaerp.entity.model.UserRole;
 import com.kaya.erp.kayaerp.entity.model.UserSayfa;
 import com.kaya.erp.kayaerp.repository.roleSayfa.RoleSayfaRepository;
 import com.kaya.erp.kayaerp.repository.sayfa.SayfaRepository;
-import com.kaya.erp.kayaerp.repository.user.UserRepository;
+import com.kaya.erp.kayaerp.repository.user.UserJpa;
 import com.kaya.erp.kayaerp.repository.userRole.UserRoleRepository;
 import com.kaya.erp.kayaerp.repository.userSayfa.UserSayfaRepository;
 
@@ -27,7 +27,7 @@ import com.kaya.erp.kayaerp.repository.userSayfa.UserSayfaRepository;
 public class SayfaServiceImpl implements ISayfaService {
 
 	@Autowired
-	UserRepository userRepository;
+	UserJpa userRepository;
 
 	@Autowired
 	SayfaRepository sayfaRepository;
