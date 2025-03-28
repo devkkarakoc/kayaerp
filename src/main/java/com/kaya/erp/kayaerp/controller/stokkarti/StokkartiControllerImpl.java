@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kaya.erp.kayaerp.entity.model.Bayi;
+
 import com.kaya.erp.kayaerp.entity.model.StokKarti;
 import com.kaya.erp.kayaerp.service.stokkarti.IStokKartiService;
 

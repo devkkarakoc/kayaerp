@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.kaya.erp.kayaerp.entity.model.Bayi;
+
 import com.kaya.erp.kayaerp.entity.model.StokKarti;
 import com.kaya.erp.kayaerp.repository.stokKarti.StokKartiJpa;
 import com.kaya.erp.kayaerp.util.AppUtil;

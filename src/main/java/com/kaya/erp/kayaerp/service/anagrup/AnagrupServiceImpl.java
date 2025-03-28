@@ -9,15 +9,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.kaya.erp.kayaerp.entity.model.Anagrup;
-import com.kaya.erp.kayaerp.entity.model.ServisArac;
-import com.kaya.erp.kayaerp.repository.anagrup.AnagrupRepository;
+import com.kaya.erp.kayaerp.repository.anagrup.AnagrupJpa;
 
 
 @Service
 public class AnagrupServiceImpl implements IAnagrupService {
 
 	@Autowired
-	private AnagrupRepository anagrupRepository;
+	private AnagrupJpa anagrupRepository;
 
 	@Override
 	public List<Anagrup> getAllAnagrup() {

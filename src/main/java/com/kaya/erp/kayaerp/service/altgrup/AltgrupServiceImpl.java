@@ -15,15 +15,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.kaya.erp.kayaerp.entity.model.Altgrup;
-import com.kaya.erp.kayaerp.entity.model.ServisArac;
-import com.kaya.erp.kayaerp.repository.altgrup.AltgrupRepository;
+import com.kaya.erp.kayaerp.repository.altgrup.AltgrupJpa;
 
 
 @Service
 public class AltgrupServiceImpl implements IAltgrupService {
 
 	@Autowired
-	private AltgrupRepository altgrupRepository;
+	private AltgrupJpa altgrupRepository;
 
 	@Override
 	public List<Altgrup> getAllAltgrup() {

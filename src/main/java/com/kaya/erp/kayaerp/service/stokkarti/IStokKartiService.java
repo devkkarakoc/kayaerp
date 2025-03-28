@@ -2,7 +2,7 @@ package com.kaya.erp.kayaerp.service.stokkarti;
 
 import java.util.List;
 
-import com.kaya.erp.kayaerp.entity.model.Bayi;
+
 import com.kaya.erp.kayaerp.entity.model.StokKarti;
 
 

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kaya.erp.kayaerp.entity.model.Altgrup;
-import com.kaya.erp.kayaerp.entity.model.ServisArac;
+
 import com.kaya.erp.kayaerp.service.altgrup.IAltgrupService;
 
 @RestController

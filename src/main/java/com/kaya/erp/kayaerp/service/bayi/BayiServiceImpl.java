@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.kaya.erp.kayaerp.entity.model.Bayi;
-import com.kaya.erp.kayaerp.repository.bayi.BayiRepository;
+import com.kaya.erp.kayaerp.repository.bayi.BayiJpa;
 
 @Service
 public class BayiServiceImpl implements IBayiService {
 
 	@Autowired
-	private BayiRepository bayiRepository;
+	private BayiJpa bayiRepository;
 
 	@Override
 	public List<Bayi> getAllBayi() {
@@ -45,14 +45,14 @@ public class BayiServiceImpl implements IBayiService {
 	}
 
 	@Override
-	public Bayi getBayiByBayiKodu(String bayi_kod) {
+	public Bayi getBayiBybayi_kodu(String bayi_kodu) {
 
-		if (bayi_kod.isEmpty()) {
+		if (bayi_kodu.isEmpty()) {
 			throw new IllegalArgumentException("Bayi Kodu Giriniz!");
 
 		}
 
-		return bayiRepository.getBayiByBayiKodu(bayi_kod);
+		return bayiRepository.getBayiBybayi_kodu(bayi_kodu);
 	}
 
 	@Override

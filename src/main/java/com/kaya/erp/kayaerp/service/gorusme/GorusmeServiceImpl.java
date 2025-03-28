@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.kaya.erp.kayaerp.entity.model.Gorusme;
-import com.kaya.erp.kayaerp.repository.gorusme.GorusmeRepository;
+import com.kaya.erp.kayaerp.repository.gorusme.GorusmeJpa;
 
 @Service
 public class GorusmeServiceImpl implements IGorusmeService {
 
 	@Autowired
-	private GorusmeRepository gorusmeRepository;
+	private GorusmeJpa gorusmeRepository;
 
 	@Override
 	public List<Gorusme> getAllGorusme() {

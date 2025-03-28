@@ -8,7 +8,7 @@ public interface IBayiService {
 	
 	public List<Bayi> getAllBayi();
 	public Bayi getBayiByIdBayi(Integer id);
-	public Bayi getBayiByBayiKodu(String bayi_kod);
+	public Bayi getBayiBybayi_kodu(String bayi_kodu);
 	public Bayi addBayi (Bayi Bayi);
 	public List <Bayi> addBayiList (List <Bayi> bayiList);
 	public void deleteBayi (Integer id);
