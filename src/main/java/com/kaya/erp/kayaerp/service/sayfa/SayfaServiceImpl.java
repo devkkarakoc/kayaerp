@@ -61,10 +61,9 @@ public class SayfaServiceImpl implements ISayfaService {
 					if (!userRoleSayfalarList.isEmpty()) {
 
 						for (Sayfa userSayfa : userRoleSayfalarList) {
-							if(!kullanininSayfalariList.contains(userSayfa)) {
+							if (!kullanininSayfalariList.contains(userSayfa)) {
 								kullanininSayfalariList.add(userSayfa);
 							}
-							
 
 						}
 
@@ -77,7 +76,8 @@ public class SayfaServiceImpl implements ISayfaService {
 
 			} else {
 
-				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Kullanıcının Rolü yok: ID = " + user_id);
+				// throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Kullanıcının Rolü
+				// yok: ID = " + user_id);
 			}
 
 			List<UserSayfa> userSayfa = userSayfaRepository.getUserSayfaByUserİd(user.get().getId());
@@ -87,7 +87,10 @@ public class SayfaServiceImpl implements ISayfaService {
 						Optional<Sayfa> optionalSayfaOptional = sayfaRepository.findById(userSayfa2.getSayfa_id());
 						if (optionalSayfaOptional.isPresent()) {
 							Sayfa sayfa = optionalSayfaOptional.get();
-							kullanininSayfalariList.add(sayfa);
+
+							if (!kullanininSayfalariList.contains(sayfa)) {
+								kullanininSayfalariList.add(sayfa);
+							}
 
 						}
 
@@ -95,7 +98,9 @@ public class SayfaServiceImpl implements ISayfaService {
 						Optional<Sayfa> optionalSayfaOptional = sayfaRepository.findById(userSayfa2.getSayfa_id());
 						if (optionalSayfaOptional.isPresent()) {
 							Sayfa sayfa = optionalSayfaOptional.get();
-							kullanininSayfalariList.remove(sayfa);
+							if (kullanininSayfalariList.contains(userSayfa2)) {
+								kullanininSayfalariList.remove(sayfa);
+							}
 
 						}
 
@@ -158,36 +163,27 @@ public class SayfaServiceImpl implements ISayfaService {
 	@Override
 	public List<DtoPageByPermittedRole> saveAndDeletePagesByDtoPermittedRole(List<DtoPageByPermittedRole> dtoPages, int role_id) {
 
-	    
-	    List<Integer> roleAitSayfaIds = roleSayfaRepository.getPagesByPermittedRole(role_id)
-	            .stream()
-	            .map(RoleSayfa::getSayfa_id)
-	            .collect(Collectors.toList());
+		List<Integer> roleAitSayfaIds = roleSayfaRepository.getPagesByPermittedRole(role_id).stream()
+				.map(RoleSayfa::getSayfa_id).collect(Collectors.toList());
 
-	    List<RoleSayfa> eklenecekSayfalar = dtoPages.stream()
-	            .filter(dto -> dto.getIsActive() && !roleAitSayfaIds.contains(dto.getSayfaId()))
-	            .map(dto -> new RoleSayfa(role_id, dto.getSayfaId(), new Timestamp(System.currentTimeMillis())))
-	            .collect(Collectors.toList());
+		List<RoleSayfa> eklenecekSayfalar = dtoPages.stream()
+				.filter(dto -> dto.getIsActive() && !roleAitSayfaIds.contains(dto.getSayfaId()))
+				.map(dto -> new RoleSayfa(role_id, dto.getSayfaId(), new Timestamp(System.currentTimeMillis())))
+				.collect(Collectors.toList());
 
-	   
-	    List<Integer> silinecekSayfaIds = dtoPages.stream()
-	            .filter(dto -> !dto.getIsActive() && roleAitSayfaIds.contains(dto.getSayfaId()))
-	            .map(DtoPageByPermittedRole::getSayfaId)
-	            .collect(Collectors.toList());
+		List<Integer> silinecekSayfaIds = dtoPages.stream()
+				.filter(dto -> !dto.getIsActive() && roleAitSayfaIds.contains(dto.getSayfaId()))
+				.map(DtoPageByPermittedRole::getSayfaId).collect(Collectors.toList());
 
-	   
-	    if (!eklenecekSayfalar.isEmpty()) {
-	        roleSayfaRepository.saveAll(eklenecekSayfalar);
-	    }
+		if (!eklenecekSayfalar.isEmpty()) {
+			roleSayfaRepository.saveAll(eklenecekSayfalar);
+		}
 
-	 
-	    if (!silinecekSayfaIds.isEmpty()) {
-	        roleSayfaRepository.deleteByRoleIdAndSayfaIds(role_id, silinecekSayfaIds);
-	    }
+		if (!silinecekSayfaIds.isEmpty()) {
+			roleSayfaRepository.deleteByRoleIdAndSayfaIds(role_id, silinecekSayfaIds);
+		}
 
-	 
-	    return getDtoPagesByPermittedRole(role_id);
+		return getDtoPagesByPermittedRole(role_id);
 	}
-
 
 }
